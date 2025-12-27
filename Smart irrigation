@@ -1,0 +1,20 @@
+int soilPin = A0;
+int relay = 7;
+
+void setup() {
+  pinMode(relay, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int soilValue = analogRead(soilPin);
+  Serial.println(soilValue);
+
+  if (soilValue > 600) {   // Dry soil
+    digitalWrite(relay, HIGH);  // Pump ON
+  } else {                 // Wet soil
+    digitalWrite(relay, LOW);   // Pump OFF
+  }
+
+  delay(1000);
+}
